@@ -1,0 +1,24 @@
+{
+    "name": "Chrisbjr/MsisdnPH",
+    "type": "library",
+    "description": "An MSISDN identification and cleaner library for Philippine telco subscribers",
+    "keywords": ["msisdn", "msisdn philippines"],
+    "homepage": "http://github.com/chrisbjr/msisdn-ph-library-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Bautista",
+            "email": "chrisbjr@gmail.com",
+            "homepage": "http://www.chrisbjr.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Msisdn": "src"
+        }
+    }
+}
