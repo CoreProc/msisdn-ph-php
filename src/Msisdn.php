@@ -9,7 +9,7 @@
  * @link https://github.com/chrisbjr/msisdn-ph-library-php
  * @license http://opensource.org/licenses/MIT
  * @version 1.0
- * @package Chrisbjr\MsisdnPH
+ * @package chrisbjr\msisdn-ph
  *
  * MIT LICENSE
  *
@@ -37,7 +37,6 @@ namespace Chrisbjr\MsisdnPH;
 
 class Msisdn
 {
-
     private $msisdn = null;
     private $prefix = null;
     private $operator = null;

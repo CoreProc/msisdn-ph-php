@@ -1,5 +1,5 @@
 {
-    "name": "Chrisbjr/MsisdnPH",
+    "name": "chrisbjr/msisdn-ph",
     "type": "library",
     "description": "An MSISDN identification and cleaner library for Philippine telco subscribers",
     "keywords": ["msisdn", "msisdn philippines"],
