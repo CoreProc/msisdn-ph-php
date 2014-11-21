@@ -67,9 +67,9 @@ class Msisdn
     function __construct($msisdn = null)
     {
         // Get the prefixes
-        $this->smart_prefixes = json_decode(file_get_contents('vendor/chrisbjr/msisdn-ph/src/prefixes/smart.json'));
-        $this->globe_prefixes = json_decode(file_get_contents('vendor/chrisbjr/msisdn-ph/src/prefixes/smart.json'));
-        $this->sun_prefixes = json_decode(file_get_contents('vendor/chrisbjr/msisdn-ph/src/prefixes/sun.json'));
+        $this->smart_prefixes = json_decode(file_get_contents('vendor/coreproc/msisdn-ph/src/prefixes/smart.json'));
+        $this->globe_prefixes = json_decode(file_get_contents('vendor/coreproc/msisdn-ph/src/prefixes/smart.json'));
+        $this->sun_prefixes = json_decode(file_get_contents('vendor/coreproc/msisdn-ph/src/prefixes/sun.json'));
 
         if ($msisdn != null) {
             $this->set($msisdn);
