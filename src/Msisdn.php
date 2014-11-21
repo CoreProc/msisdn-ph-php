@@ -37,6 +37,7 @@ namespace Coreproc\MsisdnPh;
 
 class Msisdn
 {
+
     private $msisdn = null;
     private $prefix = null;
     private $operator = null;
@@ -69,15 +70,15 @@ class Msisdn
         $this->smart_prefixes = json_decode(file_get_contents('vendor/chrisbjr/msisdn-ph/src/prefixes/smart.json'));
         $this->globe_prefixes = json_decode(file_get_contents('vendor/chrisbjr/msisdn-ph/src/prefixes/smart.json'));
         $this->sun_prefixes = json_decode(file_get_contents('vendor/chrisbjr/msisdn-ph/src/prefixes/sun.json'));
-        
-        if($msisdn != null) {
+
+        if ($msisdn != null) {
             $this->set($msisdn);
         }
     }
 
     /**
      * Set the MSISDN
-     * 
+     *
      * @param string $msisdn
      * @return boolean Returns whether the given MSISDN is valid or not
      */
@@ -190,14 +191,17 @@ class Msisdn
      */
     function isValid($msisdn = null)
     {
-        if ($msisdn == null)
+        if (empty($msisdn)) {
             $msisdn = $this->msisdn;
+        } else {
+            $msisdn = $this->clean($msisdn);
+        }
 
-        if ($msisdn == null) {
+        if (empty($msisdn)) {
             return false;
         }
 
-        if (strlen($msisdn) != 10 AND is_numeric($msisdn) == false) {
+        if (strlen($msisdn) != 10 || is_numeric($msisdn) == false) {
             return false;
         }
 
