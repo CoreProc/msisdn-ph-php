@@ -68,7 +68,7 @@ class Msisdn
     {
         // Get the prefixes
         $this->smart_prefixes = json_decode(file_get_contents('vendor/coreproc/msisdn-ph/src/prefixes/smart.json'));
-        $this->globe_prefixes = json_decode(file_get_contents('vendor/coreproc/msisdn-ph/src/prefixes/smart.json'));
+        $this->globe_prefixes = json_decode(file_get_contents('vendor/coreproc/msisdn-ph/src/prefixes/globe.json'));
         $this->sun_prefixes = json_decode(file_get_contents('vendor/coreproc/msisdn-ph/src/prefixes/sun.json'));
 
         if ($msisdn != null) {
