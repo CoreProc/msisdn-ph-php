@@ -1,9 +1,9 @@
 {
-    "name": "chrisbjr/msisdn-ph",
+    "name": "coreproc/msisdn-ph",
     "type": "library",
     "description": "An MSISDN identification and cleaner library for Philippine telco subscribers",
-    "keywords": ["msisdn", "msisdn philippines"],
-    "homepage": "http://github.com/chrisbjr/msisdn-ph-library-php",
+    "keywords": ["msisdn", "msisdn philippines", "globe", "smart", "sun"],
+    "homepage": "http://github.com/coreproc/msisdn-ph-php",
     "license": "MIT",
     "authors": [
         {
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Chrisbjr\\MsisdnPh\\": "src"
+            "Coreproc\\MsisdnPh\\": "src"
         }
     }
 }
