@@ -132,15 +132,10 @@ class Msisdn
     {
         $mobileNumber = Msisdn::clean($mobileNumber);
 
-        if (empty($mobileNumber)) {
-            return false;
-        }
 
-        if (strlen($mobileNumber) != 10 || is_numeric($mobileNumber) == false) {
-            return false;
-        }
-
-        return true;
+        return !empty($mobileNumber) &&
+            strlen($mobileNumber) === 10 &&
+            is_numeric($mobileNumber);
     }
 
     /**
