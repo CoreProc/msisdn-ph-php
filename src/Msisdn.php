@@ -83,7 +83,7 @@ class Msisdn
      *
      * @return string The operator of this number
      */
-    function getOperator()
+    public function getOperator()
     {
         $this->setPrefixes();
 
@@ -93,20 +93,14 @@ class Msisdn
 
         if (in_array($this->getPrefix(), $this->smartPrefixes)) {
             $this->operator = 'SMART';
-            return $this->operator;
-        }
-
-        if (in_array($this->getPrefix(), $this->globePrefixes)) {
+        } else if (in_array($this->getPrefix(), $this->globePrefixes)) {
             $this->operator = 'GLOBE';
-            return $this->operator;
-        }
-
-        if (in_array($this->getPrefix(), $this->sunPrefixes)) {
+        } else if (in_array($this->getPrefix(), $this->sunPrefixes)) {
             $this->operator = 'SUN';
-            return $this->operator;
+        } else {
+            $this->operator = 'UNKNOWN';
         }
-
-        $this->operator = 'UNKNOWN';
+        
         return $this->operator;
     }
 
