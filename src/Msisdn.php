@@ -22,12 +22,15 @@ class Msisdn
     public function __construct($msisdn)
     {
         if (Msisdn::validate($msisdn) === false) {
-            $exception = new Exception('The supplied MSISDN is not valid. You can use the Msisdn::validate() method to validate the MSISDN being passed.', 400);
-            throw $exception;
+            throw new Exception(
+                'The supplied MSISDN is not valid. ' .
+                'You can use the `Msisdn::validate()` method ' .
+                'to validate the MSISDN being passed.',
+                400
+            );
         }
 
-        $msisdn = Msisdn::clean($msisdn);
-        $this->msisdn = $msisdn;
+        $this->msisdn = Msisdn::clean($msisdn);
     }
 
     /**
