@@ -8,7 +8,16 @@ Easily validate and manipulate Philippine mobile numbers.
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/?branch=master)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-## Basic Setup
+* [Setup](#setup)
+* [Basic Usage](#basic-usage)
+    * [Validate the mobile number](#validate-the-mobile-number)
+    * [Instantiate an MSISDN object](#instantiate-an-msisdn-object)
+    * [Return a standardized format of your mobile number](#return-a-standardized-format-of-your-mobile-number)
+    * [Get the telco operator of a mobile number](#get-the-telco-operator-of-a-mobile-number)
+    * [Get the prefix of a mobile number](#get-the-prefix-of-a-mobile-number)
+    * [Validating mobile numbers using Laravel 5.1](#validating-mobile-numbers-using-laravel-51)
+
+## Setup
 
 Run the following command at the root of your project (assuming you have Composer and a composer.json file already)
 
@@ -16,7 +25,7 @@ Run the following command at the root of your project (assuming you have Compose
 composer require coreproc/msisdn-ph 1.0.*
 ```
 
-## Usage
+## Basic Usage
 
 ### Validate the mobile number
 
@@ -126,4 +135,16 @@ $msisdn = new Msisdn($mobileNumber);
 
 echo $msisdn->getPrefix(); // will return 917
 
+```
+
+### Validating mobile numbers using Laravel 5.1
+
+You can easily integrate this into Laravel's validator class by adding the line below to the default `AppServiceProvider` located in the `app/Providers` directory.
+
+Inside the `boot()` method, add the following line:
+
+```
+Validator::extend('msisdn', function ($attribute, $value, $parameters) {
+    return Coreproc\MsisdnPh\Msisdn::validate($value);
+});
 ```
