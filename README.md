@@ -3,6 +3,12 @@ MsisdnPH - PHP
 
 Easily validate and manipulate Philippine mobile numbers.
 
+[![Author](http://img.shields.io/badge/author-@chrisbjr-blue.svg?style=flat-square)](https://twitter.com/chrisbjr)
+[![Build Status](https://img.shields.io/travis/CoreProc/msisdn-ph-php/master.svg?style=flat-square)](https://travis-ci.org/CoreProc/msisdn-ph-php)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/CoreProc/msisdn-ph-php.svg?style=flat-square)](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/?branch=master)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/CoreProc/msisdn-ph-php.svg?style=flat-square)](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/?branch=master)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+
 ## Basic Setup
 
 Run the following command at the root of your project (assuming you have Composer and a composer.json file already)
