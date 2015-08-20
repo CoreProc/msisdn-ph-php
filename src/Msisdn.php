@@ -132,7 +132,7 @@ class Msisdn
     {
         $mobileNumber = Msisdn::clean($mobileNumber);
 
-        if (empty($msisdn)) {
+        if (empty($mobileNumber)) {
             return false;
         }
 
