@@ -4,9 +4,8 @@ MsisdnPH - PHP
 Easily validate and manipulate Philippine mobile numbers.
 
 [![Author](http://img.shields.io/badge/author-@chrisbjr-blue.svg?style=flat-square)](https://twitter.com/chrisbjr)
-[![Build Status](https://img.shields.io/travis/CoreProc/msisdn-ph-php/master.svg?style=flat-square)](https://travis-ci.org/CoreProc/msisdn-ph-php)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/CoreProc/msisdn-ph-php.svg?style=flat-square)](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/?branch=master)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/CoreProc/msisdn-ph-php.svg?style=flat-square)](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/?branch=master)
+[![Build Status](https://travis-ci.org/CoreProc/msisdn-ph-php.svg)](https://travis-ci.org/CoreProc/msisdn-ph-php)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/?branch=master)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 ## Basic Setup
