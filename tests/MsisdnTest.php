@@ -3,7 +3,7 @@
 class MsisdnTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $validMobileNumbers = [
+    protected $validMobileNumbers = array(
         '09171231234',
         '0917-123-1234',
         '63917-123-1234',
@@ -11,7 +11,7 @@ class MsisdnTest extends PHPUnit_Framework_TestCase
         '+63.917.123.1234 ',
         '+639171231234',
         ' +639171231234  ',
-    ];
+    );
 
     public function testValidNumbers()
     {
