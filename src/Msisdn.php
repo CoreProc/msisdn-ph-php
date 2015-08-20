@@ -30,6 +30,13 @@ class Msisdn
         $this->msisdn = $msisdn;
     }
 
+    /**
+     * Returns a formatted mobile number
+     *
+     * @param bool|false $countryCode
+     * @param string $separator
+     * @return mixed|string
+     */
     function get($countryCode = false, $separator = '')
     {
         if ($countryCode == false) {
@@ -115,15 +122,21 @@ class Msisdn
         }
     }
 
-    public static function validate($msisdn)
+    /**
+     * Validate a given mobile number
+     *
+     * @param string $mobileNumber
+     * @return bool
+     */
+    public static function validate($mobileNumber)
     {
-        $msisdn = Msisdn::clean($msisdn);
+        $mobileNumber = Msisdn::clean($mobileNumber);
 
         if (empty($msisdn)) {
             return false;
         }
 
-        if (strlen($msisdn) != 10 || is_numeric($msisdn) == false) {
+        if (strlen($mobileNumber) != 10 || is_numeric($mobileNumber) == false) {
             return false;
         }
 
