@@ -3,12 +3,6 @@
 class MsisdnTest extends PHPUnit_Framework_TestCase
 {
 
-    public function __construct()
-    {
-        require __DIR__ . '/../vendor/autoload.php';
-        parent::__construct();
-    }
-
     protected $validMobileNumbers = array(
         '09171231234',
         '0917-123-1234',
@@ -39,18 +33,13 @@ class MsisdnTest extends PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * @expectedException Exception
+     */
     public function testExceptionInConstructor()
     {
         foreach ($this->invalidMobileNumbers as $mobileNumber) {
-            $exception = null;
-
-            try {
-                new \Coreproc\MsisdnPh\Msisdn($mobileNumber);
-            } catch (Exception $e) {
-                $exception = $e;
-            }
-
-            $this->assertInstanceOf('Exception', $exception, 'We expect an exception thrown by the constructor.');
+            new \Coreproc\MsisdnPh\Msisdn($mobileNumber);
         }
     }
 
