@@ -6,6 +6,7 @@ Easily validate and manipulate Philippine mobile numbers.
 [![Author](http://img.shields.io/badge/author-@chrisbjr-blue.svg?style=flat-square)](https://twitter.com/chrisbjr)
 [![Build Status](https://travis-ci.org/CoreProc/msisdn-ph-php.svg)](https://travis-ci.org/CoreProc/msisdn-ph-php)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/?branch=master)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 * [Setup](#setup)
