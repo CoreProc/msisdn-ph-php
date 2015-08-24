@@ -3,22 +3,25 @@ MsisdnPH - PHP
 
 Easily validate and manipulate Philippine mobile numbers.
 
-[![Author](http://img.shields.io/badge/author-@chrisbjr-blue.svg?style=flat-square)](https://twitter.com/chrisbjr)
-[![Build Status](https://travis-ci.org/CoreProc/msisdn-ph-php.svg)](https://travis-ci.org/CoreProc/msisdn-ph-php)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/?branch=master)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-travis]][link-travis]
+[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Total Downloads][ico-downloads]][link-downloads]
 
-* [Setup](#setup)
-* [Basic Usage](#basic-usage)
+* [Install](#install)
+* [Usage](#usage)
     * [Validate the mobile number](#validate-the-mobile-number)
     * [Instantiate an MSISDN object](#instantiate-an-msisdn-object)
     * [Return a standardized format of your mobile number](#return-a-standardized-format-of-your-mobile-number)
     * [Get the telco operator of a mobile number](#get-the-telco-operator-of-a-mobile-number)
     * [Get the prefix of a mobile number](#get-the-prefix-of-a-mobile-number)
     * [Validating mobile numbers using Laravel 5.1](#validating-mobile-numbers-using-laravel-51)
+* [Credits](#credits)
+* [License](#license)
 
-## Setup
+## Install
 
 Run the following command at the root of your project (assuming you have Composer and a composer.json file already)
 
@@ -26,7 +29,7 @@ Run the following command at the root of your project (assuming you have Compose
 composer require coreproc/msisdn-ph 1.0.*
 ```
 
-## Basic Usage
+## Usage
 
 ### Validate the mobile number
 
@@ -146,3 +149,27 @@ Validator::extend('msisdn', function ($attribute, $value, $parameters) {
     return Coreproc\MsisdnPh\Msisdn::validate($value);
 });
 ```
+
+## Credits
+
+- [Chris Bautista][link-author]
+- [All Contributors][link-contributors]
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+[ico-version]: https://img.shields.io/packagist/v/coreproc/msisdn-ph.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/CoreProc/msisdn-ph-php/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/CoreProc/msisdn-ph-php.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/CoreProc/msisdn-ph-php.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/coreproc/msisdn-ph.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/coreproc/msisdn-ph
+[link-travis]: https://travis-ci.org/CoreProc/msisdn-ph-php
+[link-scrutinizer]: https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/CoreProc/msisdn-ph-php
+[link-downloads]: https://packagist.org/packages/coreproc/msisdn-ph
+[link-author]: https://github.com/chrisbjr
+[link-contributors]: ../../contributors
