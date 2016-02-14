@@ -19,6 +19,8 @@ class Msisdn
 
     private $operator = null;
 
+    protected $countryPrefix = '+63';
+
     public function __construct($msisdn)
     {
         if (Msisdn::validate($msisdn) === false) {
@@ -52,10 +54,10 @@ class Msisdn
 
             return $formattedNumber;
         } else {
-            $formattedNumber = '+63' . $this->msisdn;
+            $formattedNumber = $this->countryPrefix . $this->msisdn;
 
             if ( ! empty($separator)) {
-                $formattedNumber = substr_replace($formattedNumber, $separator, 3, 0);
+                $formattedNumber = substr_replace($formattedNumber, $separator, strlen($this->countryPrefix), 0);
                 $formattedNumber = substr_replace($formattedNumber, $separator, 7, 0);
                 $formattedNumber = substr_replace($formattedNumber, $separator, 11, 0);
             }
@@ -100,7 +102,7 @@ class Msisdn
         } else {
             $this->operator = 'UNKNOWN';
         }
-        
+
         return $this->operator;
     }
 
@@ -129,10 +131,9 @@ class Msisdn
     {
         $mobileNumber = Msisdn::clean($mobileNumber);
 
-
-        return !empty($mobileNumber) &&
-            strlen($mobileNumber) === 10 &&
-            is_numeric($mobileNumber);
+        return ! empty($mobileNumber) &&
+        strlen($mobileNumber) === 10 &&
+        is_numeric($mobileNumber);
     }
 
     /**
@@ -153,6 +154,16 @@ class Msisdn
         }
 
         return $msisdn;
+    }
+
+    /**
+     * Sets the country prefix - this defaults to +63
+     *
+     * @param $countryPrefix
+     */
+    public function setCountryPrefix($countryPrefix)
+    {
+        $this->countryPrefix = $countryPrefix;
     }
 
 }
