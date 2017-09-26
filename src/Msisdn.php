@@ -15,6 +15,14 @@ class Msisdn
 
     private $sunPrefixes = null;
 
+    private $cherryPrefixes = null;
+
+    private $absCbnPrefixes = null;
+
+    private $extelcomPrefixes = null;
+
+    private $nextPrefixes = null;
+
     private $prefix = null;
 
     private $operator = null;
@@ -47,7 +55,7 @@ class Msisdn
         if ($countryCode == false) {
             $formattedNumber = '0' . $this->msisdn;
 
-            if ( ! empty($separator)) {
+            if (! empty($separator)) {
                 $formattedNumber = substr_replace($formattedNumber, $separator, 4, 0);
                 $formattedNumber = substr_replace($formattedNumber, $separator, 8, 0);
             }
@@ -56,7 +64,7 @@ class Msisdn
         } else {
             $formattedNumber = $this->countryPrefix . $this->msisdn;
 
-            if ( ! empty($separator)) {
+            if (! empty($separator)) {
                 $formattedNumber = substr_replace($formattedNumber, $separator, strlen($this->countryPrefix), 0);
                 $formattedNumber = substr_replace($formattedNumber, $separator, 7, 0);
                 $formattedNumber = substr_replace($formattedNumber, $separator, 11, 0);
@@ -89,18 +97,36 @@ class Msisdn
     {
         $this->setPrefixes();
 
-        if ( ! empty($this->operator)) {
+        if (! empty($this->operator)) {
             return $this->operator;
         }
 
-        if (in_array($this->getPrefix(), $this->smartPrefixes)) {
-            $this->operator = 'SMART';
-        } else if (in_array($this->getPrefix(), $this->globePrefixes)) {
-            $this->operator = 'GLOBE';
-        } else if (in_array($this->getPrefix(), $this->sunPrefixes)) {
-            $this->operator = 'SUN';
-        } else {
-            $this->operator = 'UNKNOWN';
+        $prefix = $this->getPrefix();
+
+        switch ($prefix) {
+            case in_array($prefix, $this->smartPrefixes):
+                $this->operator = 'SMART';
+                break;
+            case in_array($prefix, $this->globePrefixes):
+                $this->operator = 'GLOBE';
+                break;
+            case in_array($prefix, $this->sunPrefixes):
+                $this->operator = 'SUN';
+                break;
+            case in_array($prefix, $this->absCbnPrefixes):
+                $this->operator = 'ABS-CBN MOBILE';
+                break;
+            case in_array($prefix, $this->cherryPrefixes):
+                $this->operator = 'CHERRY MOBILE';
+                break;
+            case in_array($prefix, $this->nextPrefixes):
+                $this->operator = 'NEXT MOBILE';
+                break;
+            case in_array($prefix, $this->extelcomPrefixes):
+                $this->operator = 'EXTELCOM';
+                break;
+            default:
+                $this->operator = 'UNKNOWN';
         }
 
         return $this->operator;
@@ -119,6 +145,22 @@ class Msisdn
         if (empty($this->sunPrefixes)) {
             $this->sunPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/sun.json'));
         }
+
+        if (empty($this->cherryPrefixes)) {
+            $this->cherryPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/cherry.json'));
+        }
+
+        if (empty($this->absCbnPrefixes)) {
+            $this->absCbnPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/abs-cbn.json'));
+        }
+
+        if (empty($this->extelcomPrefixes)) {
+            $this->extelcomPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/extelcom.json'));
+        }
+
+        if (empty($this->nextPrefixes)) {
+            $this->nextPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/next.json'));
+        }
     }
 
     /**
@@ -132,8 +174,8 @@ class Msisdn
         $mobileNumber = Msisdn::clean($mobileNumber);
 
         return ! empty($mobileNumber) &&
-        strlen($mobileNumber) === 10 &&
-        is_numeric($mobileNumber);
+            strlen($mobileNumber) === 10 &&
+            is_numeric($mobileNumber);
     }
 
     /**
@@ -149,8 +191,10 @@ class Msisdn
         // We remove the 0 or 63 from the number
         if (substr($msisdn, 0, 1) == '0') {
             $msisdn = substr($msisdn, 1, strlen($msisdn));
-        } else if (substr($msisdn, 0, 2) == '63') {
-            $msisdn = substr($msisdn, 2, strlen($msisdn));
+        } else {
+            if (substr($msisdn, 0, 2) == '63') {
+                $msisdn = substr($msisdn, 2, strlen($msisdn));
+            }
         }
 
         return $msisdn;
