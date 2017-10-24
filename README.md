@@ -28,7 +28,7 @@ Easily validate and manipulate Philippine mobile numbers.
 Run the following command at the root of your project (assuming you have Composer and a composer.json file already)
 
 ```bash
-composer require coreproc/msisdn-ph 1.0.*
+composer require coreproc/msisdn-ph "1.0.*"
 ```
 
 ## Usage
