@@ -31,4 +31,3 @@
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     }
 }
-
