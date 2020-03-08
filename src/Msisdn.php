@@ -2,11 +2,10 @@
 
 namespace Coreproc\MsisdnPh;
 
-use Exception;
+use Coreproc\MsisdnPh\Exceptions\InvalidMsisdnException;
 
 class Msisdn
 {
-
     private $msisdn;
 
     private $smartPrefixes = null;
@@ -21,10 +20,16 @@ class Msisdn
 
     protected $countryPrefix = '+63';
 
+    /**
+     * Msisdn constructor.
+     *
+     * @param $msisdn
+     * @throws InvalidMsisdnException
+     */
     public function __construct($msisdn)
     {
         if (Msisdn::validate($msisdn) === false) {
-            throw new Exception(
+            throw new InvalidMsisdnException(
                 'The supplied MSISDN is not valid. ' .
                 'You can use the `Msisdn::validate()` method ' .
                 'to validate the MSISDN being passed.',
@@ -32,38 +37,36 @@ class Msisdn
             );
         }
 
-        $this->msisdn = Msisdn::clean($msisdn);
+        $this->msisdn = self::clean($msisdn);
     }
 
     /**
      * Returns a formatted mobile number
      *
-     * @param bool|false $countryCode
+     * @param bool|false $hasCountryCode
      * @param string $separator
      * @return mixed|string
      */
-    function get($countryCode = false, $separator = '')
+    function get($hasCountryCode = false, $separator = '')
     {
-        if ($countryCode == false) {
+        if (! $hasCountryCode) {
             $formattedNumber = '0' . $this->msisdn;
 
-            if ( ! empty($separator)) {
+            if (! empty($separator)) {
                 $formattedNumber = substr_replace($formattedNumber, $separator, 4, 0);
                 $formattedNumber = substr_replace($formattedNumber, $separator, 8, 0);
             }
-
-            return $formattedNumber;
         } else {
             $formattedNumber = $this->countryPrefix . $this->msisdn;
 
-            if ( ! empty($separator)) {
+            if (! empty($separator)) {
                 $formattedNumber = substr_replace($formattedNumber, $separator, strlen($this->countryPrefix), 0);
                 $formattedNumber = substr_replace($formattedNumber, $separator, 7, 0);
                 $formattedNumber = substr_replace($formattedNumber, $separator, 11, 0);
             }
-
-            return $formattedNumber;
         }
+
+        return $formattedNumber;
     }
 
     /**
@@ -89,19 +92,29 @@ class Msisdn
     {
         $this->setPrefixes();
 
-        if ( ! empty($this->operator)) {
+        if (! empty($this->operator)) {
+            return $this->operator;
+        }
+
+        if (in_array($this->getPrefix(), $this->globePrefixes)) {
+            $this->operator = 'GLOBE';
+
             return $this->operator;
         }
 
         if (in_array($this->getPrefix(), $this->smartPrefixes)) {
             $this->operator = 'SMART';
-        } else if (in_array($this->getPrefix(), $this->globePrefixes)) {
-            $this->operator = 'GLOBE';
-        } else if (in_array($this->getPrefix(), $this->sunPrefixes)) {
-            $this->operator = 'SUN';
-        } else {
-            $this->operator = 'UNKNOWN';
+
+            return $this->operator;
         }
+
+        if (in_array($this->getPrefix(), $this->sunPrefixes)) {
+            $this->operator = 'SUN';
+
+            return $this->operator;
+        }
+
+        $this->operator = 'UNKNOWN';
 
         return $this->operator;
     }
@@ -132,8 +145,8 @@ class Msisdn
         $mobileNumber = Msisdn::clean($mobileNumber);
 
         return ! empty($mobileNumber) &&
-        strlen($mobileNumber) === 10 &&
-        is_numeric($mobileNumber);
+            strlen($mobileNumber) === 10 &&
+            is_numeric($mobileNumber);
     }
 
     /**
@@ -147,10 +160,12 @@ class Msisdn
         $msisdn = preg_replace("/[^0-9]/", "", $msisdn);
 
         // We remove the 0 or 63 from the number
-        if (substr($msisdn, 0, 1) == '0') {
+        if (substr($msisdn, 0, 1) === '0') {
             $msisdn = substr($msisdn, 1, strlen($msisdn));
-        } else if (substr($msisdn, 0, 2) == '63') {
-            $msisdn = substr($msisdn, 2, strlen($msisdn));
+        } else {
+            if (substr($msisdn, 0, 2) === '63') {
+                $msisdn = substr($msisdn, 2, strlen($msisdn));
+            }
         }
 
         return $msisdn;
@@ -165,5 +180,4 @@ class Msisdn
     {
         $this->countryPrefix = $countryPrefix;
     }
-
 }

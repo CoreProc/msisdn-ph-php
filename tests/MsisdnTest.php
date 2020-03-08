@@ -2,8 +2,7 @@
 
 class MsisdnTest extends PHPUnit_Framework_TestCase
 {
-
-    protected $validMobileNumbers = array(
+    protected $validMobileNumbers = [
         '09171231234',
         '0917-123-1234',
         '63917-123-1234',
@@ -11,30 +10,32 @@ class MsisdnTest extends PHPUnit_Framework_TestCase
         '+63.917.123.1234 ',
         '+639171231234',
         ' +639171231234  ',
-    );
+    ];
 
-    protected $invalidMobileNumbers = array(
+    protected $invalidMobileNumbers = [
         '0918123123',
         '+6391812312345',
-        ''
-    );
+        '',
+    ];
 
     public function testValidNumbers()
     {
         foreach ($this->validMobileNumbers as $mobileNumber) {
-            $this->assertTrue(Coreproc\MsisdnPh\Msisdn::validate($mobileNumber), 'Mobile number "' . $mobileNumber . '" should be valid.');
+            $this->assertTrue(Coreproc\MsisdnPh\Msisdn::validate($mobileNumber),
+                'Mobile number "' . $mobileNumber . '" should be valid.');
         }
     }
 
     public function testInvalidNumbers()
     {
         foreach ($this->invalidMobileNumbers as $mobileNumber) {
-            $this->assertFalse(Coreproc\MsisdnPh\Msisdn::validate($mobileNumber), 'Mobile number "' . $mobileNumber . '" should be invalid.');
+            $this->assertFalse(Coreproc\MsisdnPh\Msisdn::validate($mobileNumber),
+                'Mobile number "' . $mobileNumber . '" should be invalid.');
         }
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException \Coreproc\MsisdnPh\Exceptions\InvalidMsisdnException
      */
     public function testExceptionInConstructor()
     {
@@ -75,7 +76,7 @@ class MsisdnTest extends PHPUnit_Framework_TestCase
 
         $sunMsisdn = new \Coreproc\MsisdnPh\Msisdn('09321231234');
 
-        $unknownMsisdn = new \Coreproc\MsisdnPh\Msisdn('09511231234');
+        $unknownMsisdn = new \Coreproc\MsisdnPh\Msisdn('08881231234');
 
         $this->assertEquals('GLOBE', $globeMsisdn->getOperator());
 
@@ -85,5 +86,4 @@ class MsisdnTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('UNKNOWN', $unknownMsisdn->getOperator());
     }
-
 }

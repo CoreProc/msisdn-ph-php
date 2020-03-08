@@ -28,7 +28,7 @@ Easily validate and manipulate Philippine mobile numbers.
 Run the following command at the root of your project (assuming you have Composer and a composer.json file already)
 
 ```bash
-composer require coreproc/msisdn-ph "1.0.*"
+composer require coreproc/msisdn-ph "^1.0"
 ```
 
 ## Usage
@@ -65,14 +65,14 @@ $mobileNumber = '09171231234';
 $msisdn = new Msisdn($mobileNumber);
 ```
 
-The MSISDN object will throw an `Exception` if you give it an invalid mobile number, so it's best to either catch the exception OR validate it before creating an MSISDN object.
+The MSISDN object will throw an `InvalidMsisdnException` if you give it an invalid mobile number, so it's best to either catch the exception OR validate it before creating an MSISDN object.
 
 ```php
 $invalidMobileNumber = '0917-123-123';
 
 try {
    $msisdn = new Msisdn($invalidMobileNumber);
-} catch (Exception $e) {
+} catch (InvalidMsisdnException $e) {
    echo 'The number is invalid';
    return;
 }
@@ -156,6 +156,12 @@ Validator::extend('msisdn', function ($attribute, $value, $parameters) {
 
 - [Chris Bautista][link-author]
 - [All Contributors][link-contributors]
+
+## About CoreProc
+
+CoreProc is a software development company that provides software development services to startups, digital/ad agencies, and enterprises.
+
+Learn more about us on our [website](https://coreproc.com).
 
 ## License
 
