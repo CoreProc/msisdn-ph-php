@@ -2,14 +2,14 @@
     "name": "coreproc/msisdn-ph",
     "type": "library",
     "description": "An MSISDN identification and cleaner library for Philippine telco subscribers",
-    "keywords": ["msisdn", "msisdn philippines", "globe", "smart", "sun"],
+    "keywords": ["msisdn", "msisdn philippines", "globe", "smart", "sun", "mobile number"],
     "homepage": "http://github.com/coreproc/msisdn-ph-php",
     "license": "MIT",
     "authors": [
         {
             "name": "Chris Bautista",
-            "email": "chrisbjr@gmail.com",
-            "homepage": "http://www.chrisbjr.com",
+            "email": "chris.bautista@coreproc.ph",
+            "homepage": "https://coreproc.com",
             "role": "Developer"
         }
     ],
@@ -25,5 +25,10 @@
         "psr-4": {
             "Coreproc\\MsisdnPh\\": "src"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     }
 }
+
