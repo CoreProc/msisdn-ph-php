@@ -76,6 +76,8 @@ class MsisdnTest extends PHPUnit_Framework_TestCase
 
         $sunMsisdn = new \Coreproc\MsisdnPh\Msisdn('09321231234');
 
+        $ditoMsisdn = new \Coreproc\MsisdnPh\Msisdn('09911231234');
+
         $unknownMsisdn = new \Coreproc\MsisdnPh\Msisdn('08881231234');
 
         $this->assertEquals('GLOBE', $globeMsisdn->getOperator());
@@ -83,6 +85,8 @@ class MsisdnTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('SMART', $smartMsisdn->getOperator());
 
         $this->assertEquals('SUN', $sunMsisdn->getOperator());
+
+        $this->assertEquals('DITO', $ditoMsisdn->getOperator());
 
         $this->assertEquals('UNKNOWN', $unknownMsisdn->getOperator());
     }

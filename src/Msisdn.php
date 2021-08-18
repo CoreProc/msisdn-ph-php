@@ -14,6 +14,8 @@ class Msisdn
 
     private $sunPrefixes = null;
 
+    private $ditoPrefixes = null;
+
     private $prefix = null;
 
     private $operator = null;
@@ -114,6 +116,12 @@ class Msisdn
             return $this->operator;
         }
 
+        if (in_array($this->getPrefix(), $this->ditoPrefixes)) {
+            $this->operator = 'DITO';
+
+            return $this->operator;
+        }
+
         $this->operator = 'UNKNOWN';
 
         return $this->operator;
@@ -131,6 +139,10 @@ class Msisdn
 
         if (empty($this->sunPrefixes)) {
             $this->sunPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/sun.json'));
+        }
+
+        if (empty($this->ditoPrefixes)) {
+            $this->ditoPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/dito.json'));
         }
     }
 
