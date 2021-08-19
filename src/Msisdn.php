@@ -16,6 +16,8 @@ class Msisdn
 
     private $ditoPrefixes = null;
 
+    private $gomoPrefixes = null;
+
     private $prefix = null;
 
     private $operator = null;
@@ -122,6 +124,12 @@ class Msisdn
             return $this->operator;
         }
 
+        if (in_array($this->getPrefix(), $this->gomoPrefixes)) {
+            $this->operator = 'GOMO';
+
+            return $this->operator;
+        }
+
         $this->operator = 'UNKNOWN';
 
         return $this->operator;
@@ -143,6 +151,10 @@ class Msisdn
 
         if (empty($this->ditoPrefixes)) {
             $this->ditoPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/dito.json'));
+        }
+
+        if (empty($this->gomoPrefixes)) {
+            $this->gomoPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/gomo.json'));
         }
     }
 
