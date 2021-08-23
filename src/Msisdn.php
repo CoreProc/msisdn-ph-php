@@ -100,34 +100,54 @@ class Msisdn
             return $this->operator;
         }
 
-        if (in_array($this->getPrefix(), $this->globePrefixes)) {
-            $this->operator = 'GLOBE';
+        foreach ($this->globePrefixes as $globePrefix) {
+            $prefix = substr($this->msisdn, 0, strlen($globePrefix));
 
-            return $this->operator;
+            if (in_array($prefix, $this->globePrefixes)) {
+                $this->operator = 'GLOBE';
+
+                return $this->operator;
+            }
         }
 
-        if (in_array($this->getPrefix(), $this->smartPrefixes)) {
-            $this->operator = 'SMART';
+        foreach ($this->smartPrefixes as $smartPrefix) {
+            $prefix = substr($this->msisdn, 0, strlen($smartPrefix));
 
-            return $this->operator;
+            if (in_array($prefix, $this->smartPrefixes)) {
+                $this->operator = 'SMART';
+
+                return $this->operator;
+            }
         }
 
-        if (in_array($this->getPrefix(), $this->sunPrefixes)) {
-            $this->operator = 'SUN';
+        foreach ($this->sunPrefixes as $sunPrefix) {
+            $prefix = substr($this->msisdn, 0, strlen($sunPrefix));
 
-            return $this->operator;
+            if (in_array($prefix, $this->sunPrefixes)) {
+                $this->operator = 'SUN';
+
+                return $this->operator;
+            }
         }
 
-        if (in_array($this->getPrefix(), $this->ditoPrefixes)) {
-            $this->operator = 'DITO';
+        foreach ($this->ditoPrefixes as $ditoPrefix) {
+            $prefix = substr($this->msisdn, 0, strlen($ditoPrefix));
 
-            return $this->operator;
+            if (in_array($prefix, $this->ditoPrefixes)) {
+                $this->operator = 'DITO';
+
+                return $this->operator;
+            }
         }
 
-        if (in_array($this->getPrefix(), $this->gomoPrefixes)) {
-            $this->operator = 'GOMO';
+        foreach ($this->gomoPrefixes as $gomoPrefix) {
+            $prefix = substr($this->msisdn, 0, strlen($gomoPrefix));
 
-            return $this->operator;
+            if (in_array($prefix, $this->gomoPrefixes)) {
+                $this->operator = 'GOMO';
+
+                return $this->operator;
+            }
         }
 
         $this->operator = 'UNKNOWN';

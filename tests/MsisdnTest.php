@@ -61,7 +61,7 @@ class MsisdnTest extends PHPUnit_Framework_TestCase
 
     public function testPrefix()
     {
-        $mobileNumber = '09171231234';
+        $mobileNumber = '09173231234';
 
         $msisdn = new \Coreproc\MsisdnPh\Msisdn($mobileNumber);
 
@@ -70,11 +70,11 @@ class MsisdnTest extends PHPUnit_Framework_TestCase
 
     public function testOperator()
     {
-        $globeMsisdn = new \Coreproc\MsisdnPh\Msisdn('09171231234');
+        $globeMsisdn = new \Coreproc\MsisdnPh\Msisdn('09255231234');
 
         $smartMsisdn = new \Coreproc\MsisdnPh\Msisdn('09191231234');
 
-        $sunMsisdn = new \Coreproc\MsisdnPh\Msisdn('09321231234');
+        $sunMsisdn = new \Coreproc\MsisdnPh\Msisdn('09251231234');
 
         $ditoMsisdn = new \Coreproc\MsisdnPh\Msisdn('09911231234');
 
