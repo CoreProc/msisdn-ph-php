@@ -14,6 +14,10 @@ class Msisdn
 
     private $sunPrefixes = null;
 
+    private $ditoPrefixes = null;
+
+    private $gomoPrefixes = null;
+
     private $prefix = null;
 
     private $operator = null;
@@ -96,22 +100,54 @@ class Msisdn
             return $this->operator;
         }
 
-        if (in_array($this->getPrefix(), $this->globePrefixes)) {
-            $this->operator = 'GLOBE';
+        foreach ($this->globePrefixes as $globePrefix) {
+            $prefix = substr($this->msisdn, 0, strlen($globePrefix));
 
-            return $this->operator;
+            if (in_array($prefix, $this->globePrefixes)) {
+                $this->operator = 'GLOBE';
+
+                return $this->operator;
+            }
         }
 
-        if (in_array($this->getPrefix(), $this->smartPrefixes)) {
-            $this->operator = 'SMART';
+        foreach ($this->smartPrefixes as $smartPrefix) {
+            $prefix = substr($this->msisdn, 0, strlen($smartPrefix));
 
-            return $this->operator;
+            if (in_array($prefix, $this->smartPrefixes)) {
+                $this->operator = 'SMART';
+
+                return $this->operator;
+            }
         }
 
-        if (in_array($this->getPrefix(), $this->sunPrefixes)) {
-            $this->operator = 'SUN';
+        foreach ($this->sunPrefixes as $sunPrefix) {
+            $prefix = substr($this->msisdn, 0, strlen($sunPrefix));
 
-            return $this->operator;
+            if (in_array($prefix, $this->sunPrefixes)) {
+                $this->operator = 'SUN';
+
+                return $this->operator;
+            }
+        }
+
+        foreach ($this->ditoPrefixes as $ditoPrefix) {
+            $prefix = substr($this->msisdn, 0, strlen($ditoPrefix));
+
+            if (in_array($prefix, $this->ditoPrefixes)) {
+                $this->operator = 'DITO';
+
+                return $this->operator;
+            }
+        }
+
+        foreach ($this->gomoPrefixes as $gomoPrefix) {
+            $prefix = substr($this->msisdn, 0, strlen($gomoPrefix));
+
+            if (in_array($prefix, $this->gomoPrefixes)) {
+                $this->operator = 'GOMO';
+
+                return $this->operator;
+            }
         }
 
         $this->operator = 'UNKNOWN';
@@ -131,6 +167,14 @@ class Msisdn
 
         if (empty($this->sunPrefixes)) {
             $this->sunPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/sun.json'));
+        }
+
+        if (empty($this->ditoPrefixes)) {
+            $this->ditoPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/dito.json'));
+        }
+
+        if (empty($this->gomoPrefixes)) {
+            $this->gomoPrefixes = json_decode(file_get_contents(__DIR__ . '/prefixes/gomo.json'));
         }
     }
 
